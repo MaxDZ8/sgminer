@@ -499,6 +499,12 @@
     <ClInclude Include="..\algorithm\yescrypt_core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\ocl\flexible_kernel_functions.h">
+      <Filter>Header Files\ocl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ocl\cl_state.h">
+      <Filter>Header Files\ocl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.txt" />

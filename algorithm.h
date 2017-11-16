@@ -10,6 +10,8 @@
 #include <inttypes.h>
 #include <stdbool.h>
 #include "ocl/build_kernel.h"   // For the build_kernel_data type
+#include "ocl/flexible_kernel_functions.h"
+#include "ocl/cl_state.h"
 
 typedef enum {
   ALGO_UNK,
@@ -48,7 +50,6 @@ extern const char *algorithm_type_str[];
 
 extern void gen_hash(const unsigned char *data, unsigned int len, unsigned char *hash);
 
-struct __clState;
 struct _dev_blk_ctx;
 struct _build_kernel_data;
 struct cgpu_info;
@@ -80,6 +81,7 @@ typedef struct _algorithm_t {
   cl_int(*queue_kernel)(struct __clState *, struct _dev_blk_ctx *, cl_uint);
   void(*gen_hash)(const unsigned char *, unsigned int, unsigned char *);
   void(*set_compile_options)(struct _build_kernel_data *, struct cgpu_info *, struct _algorithm_t *);
+  flexible_algorithm_functions_t flexibility;
 } algorithm_t;
 
 typedef struct _algorithm_settings_t
@@ -104,6 +106,7 @@ typedef struct _algorithm_settings_t
 	cl_int   (*queue_kernel)(struct __clState *, struct _dev_blk_ctx *, cl_uint);
 	void     (*gen_hash)(const unsigned char *, unsigned int, unsigned char *);
 	void     (*set_compile_options)(build_kernel_data *, struct cgpu_info *, algorithm_t *);
+  flexible_algorithm_functions_t flexibility;
 } algorithm_settings_t;
 
 /* Set default parameters based on name. */
